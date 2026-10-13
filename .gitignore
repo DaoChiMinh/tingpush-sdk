@@ -19,3 +19,4 @@ maui/**/obj/
 # Gradle ở gốc (JitPack)
 .gradle/
 build/
+.kotlin/
