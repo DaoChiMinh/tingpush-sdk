@@ -40,7 +40,6 @@ class App : Application() {
         TingPush.init(
             this,
             appId = "APP_ID_CUA_BAN",
-            serverUrl = "https://push.example.com",
             options = TingPush.Options(
                 notificationIcon = R.drawable.ic_notification,  // icon trắng trong suốt
                 callTexts = CallTexts(answer = "Nghe", decline = "Từ chối"),
@@ -67,9 +66,11 @@ class App : Application() {
 }
 ```
 
+`serverUrl` mặc định là `https://tingpush.com`. Chỉ truyền khi tự host server TingPush hoặc test với server khác (vd server dev trong mạng LAN).
+
 Khai báo `android:name=".App"` trong thẻ `<application>` của manifest.
 
-**Java:** dùng `TingPush.init(this, "APP_ID", "https://push.example.com")` và `TingPush.INSTANCE.setListener(...)`.
+**Java:** dùng `TingPush.init(this, "APP_ID")` và `TingPush.INSTANCE.setListener(...)`.
 
 ## 3. Activity chính
 

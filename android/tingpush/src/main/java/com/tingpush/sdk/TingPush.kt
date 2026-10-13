@@ -29,12 +29,15 @@ import java.util.concurrent.Executors
  * class App : Application() {
  *     override fun onCreate() {
  *         super.onCreate()
- *         TingPush.init(this, appId = "…", serverUrl = "https://push.example.com")
+ *         TingPush.init(this, appId = "…")
  *     }
  * }
  * ```
  */
 object TingPush {
+    /** Địa chỉ server TingPush mặc định. */
+    const val DEFAULT_SERVER_URL = "https://tingpush.com"
+
     private const val TAG = "TingPush"
     private const val PREFS = "com.tingpush.sdk"
     private const val KEY_DEVICE_ID = "deviceId"
@@ -94,11 +97,11 @@ object TingPush {
     /**
      * Gọi trong Application.onCreate.
      * @param appId App ID của dự án trên TingPush.
-     * @param serverUrl địa chỉ TingPush, vd https://push.example.com
+     * @param serverUrl địa chỉ server TingPush; chỉ cần đổi khi tự host server hoặc test với server khác.
      */
     @JvmStatic
     @JvmOverloads
-    fun init(context: Context, appId: String, serverUrl: String, options: Options = Options()) {
+    fun init(context: Context, appId: String, serverUrl: String = DEFAULT_SERVER_URL, options: Options = Options()) {
         appContext = context.applicationContext
         this.options = options
         api = TingPushApi(serverUrl, appId)

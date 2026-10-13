@@ -32,8 +32,8 @@ export interface TingPushCallEvent {
 export interface TingPushOptions {
   /** App ID của dự án trên TingPush. */
   appId: string;
-  /** Địa chỉ TingPush, vd https://push.example.com */
-  serverUrl: string;
+  /** Địa chỉ server TingPush, mặc định https://tingpush.com. Chỉ cần đổi khi tự host server hoặc test với server khác. */
+  serverUrl?: string;
   /** Tên app trên màn hình cuộc gọi. */
   appName: string;
   /** iOS: môi trường APNs. Mặc định __DEV__ = sandbox. */

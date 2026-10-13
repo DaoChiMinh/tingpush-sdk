@@ -44,7 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TingPushDelegate {
         TingPush.shared.loggingEnabled = true   // tắt khi phát hành
         TingPush.shared.initialize(
             appId: "APP_ID_CUA_BAN",
-            serverURL: URL(string: "https://push.example.com")!,
             // Bỏ tham số này nếu không dùng cuộc gọi.
             callConfiguration: TingPushCallConfiguration(
                 localizedName: "MyApp",
@@ -73,6 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TingPushDelegate {
     }
 }
 ```
+
+`serverURL` mặc định là `https://tingpush.com`. Chỉ truyền khi tự host server TingPush hoặc test với server khác (vd server dev trong mạng LAN).
 
 **Lưu ý:**
 

@@ -37,7 +37,6 @@ public static MauiApp CreateMauiApp()
         .UseTingPush(new TingPushOptions
         {
             AppId = "APP_ID_CUA_BAN",
-            ServerUrl = "https://push.example.com",
             AndroidNotificationIcon = "ic_notification",   // drawable trắng trong suốt; bỏ trống = icon app
             IosCallIconFile = "call_icon.png",             // ảnh template trên màn hình CallKit (tuỳ chọn)
             TextAnswer = "Nghe",
@@ -49,6 +48,8 @@ public static MauiApp CreateMauiApp()
     return builder.Build();
 }
 ```
+
+`ServerUrl` mặc định là `https://tingpush.com`. Chỉ truyền khi tự host server TingPush hoặc test với server khác (vd server dev trong mạng LAN).
 
 ## 3. Nhận sự kiện (`App.xaml.cs`)
 

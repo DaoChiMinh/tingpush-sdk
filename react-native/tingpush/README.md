@@ -53,7 +53,6 @@ export default function App() {
     TingPush.initialize(
       {
         appId: 'APP_ID_CUA_BAN',
-        serverUrl: 'https://push.example.com',
         appName: 'MyApp',
         logging: __DEV__,
       },
@@ -83,6 +82,8 @@ export default function App() {
   // …
 }
 ```
+
+`serverUrl` mặc định là `https://tingpush.com`. Chỉ truyền khi tự host server TingPush hoặc test với server khác (vd server dev trong mạng LAN).
 
 **Môi trường APNs:** mặc định `__DEV__` là sandbox. Bản TestFlight và App Store là production. Muốn chỉ định cố định thì truyền `iosSandbox`.
 

@@ -25,7 +25,7 @@ Future<void> tingPushBackgroundHandler(RemoteMessage message) async {
 ///
 /// ```dart
 /// await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-/// await TingPush.initialize(appId: '…', serverUrl: 'https://push.example.com');
+/// await TingPush.initialize(appId: '…');
 /// TingPush.onNotificationOpened.listen((n) { /* điều hướng theo n.data */ });
 /// ```
 class TingPush {
@@ -36,6 +36,9 @@ class TingPush {
   static const _kPendingTags = 'tingpush.pendingTags';
   static const _kUnsubscribed = 'tingpush.unsubscribed';
   static const _kStyle = 'tingpush.callStyle';
+
+  /// Địa chỉ server TingPush mặc định.
+  static const defaultServerUrl = 'https://tingpush.com';
 
   static const _channel = MethodChannel('tingpush');
 
@@ -91,7 +94,7 @@ class TingPush {
   /// Gọi sau `Firebase.initializeApp`.
   ///
   /// - [appId]: App ID của dự án trên TingPush.
-  /// - [serverUrl]: địa chỉ TingPush, vd `https://push.example.com`.
+  /// - [serverUrl]: địa chỉ server TingPush; chỉ cần đổi khi tự host server hoặc test với server khác.
   /// - [iosSandbox]: môi trường APNs của token iOS. Mặc định: debug/profile = sandbox, release = production.
   ///   Bản TestFlight/App Store là production; build release cài từ Xcode bằng profile development thì truyền true.
   /// - [requestPermission]: xin quyền thông báo ngay (iOS, Android 13+).
@@ -100,7 +103,7 @@ class TingPush {
   ///   Đặt false nếu app có `FirebaseMessaging.onBackgroundMessage` riêng, rồi gọi [handleBackgroundMessage] trong đó.
   static Future<void> initialize({
     required String appId,
-    required String serverUrl,
+    String serverUrl = defaultServerUrl,
     bool? iosSandbox,
     TingPushCallStyle callStyle = const TingPushCallStyle(),
     bool requestPermission = true,

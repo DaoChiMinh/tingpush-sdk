@@ -23,6 +23,9 @@ const KEY_OPTIONS = 'tingpush.options';
 const KEY_ACCEPTED = 'tingpush.acceptedCall';
 const DEFAULT_TIMEOUT_SECONDS = 45;
 
+/** Địa chỉ server TingPush mặc định. */
+export const DEFAULT_SERVER_URL = 'https://tingpush.com';
+
 /** Lý do kết thúc cuộc gọi của RNCallKeep.reportEndCallWithUUID. */
 const END_REASON_REMOTE_ENDED = 2;
 const END_REASON_UNANSWERED = 3;
@@ -255,7 +258,7 @@ function sync(): Promise<void> {
 }
 
 function url(path: string): string {
-  return `${options!.serverUrl.replace(/\/+$/, '')}/${path}`;
+  return `${(options!.serverUrl ?? DEFAULT_SERVER_URL).replace(/\/+$/, '')}/${path}`;
 }
 
 function deviceLanguage(): string {

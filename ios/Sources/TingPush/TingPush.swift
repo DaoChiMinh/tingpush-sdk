@@ -5,11 +5,13 @@ import UserNotifications
 /// Điểm vào của SDK. Dùng qua `TingPush.shared`.
 ///
 /// ```swift
-/// TingPush.shared.initialize(appId: "…", serverURL: URL(string: "https://push.example.com")!,
-///                               callConfiguration: .init(localizedName: "MyApp"))
+/// TingPush.shared.initialize(appId: "…", callConfiguration: .init(localizedName: "MyApp"))
 /// ```
 public final class TingPush: NSObject {
     public static let shared = TingPush()
+
+    /// Địa chỉ server TingPush mặc định.
+    public static let defaultServerURL = URL(string: "https://tingpush.com")!
 
     public weak var delegate: TingPushDelegate? {
         didSet {
@@ -56,14 +58,14 @@ public final class TingPush: NSObject {
     /// Gọi trong `application(_:didFinishLaunchingWithOptions:)`, trước khi return.
     /// - Parameters:
     ///   - appId: App ID của dự án trên TingPush.
-    ///   - serverURL: địa chỉ TingPush, vd `https://push.example.com`.
+    ///   - serverURL: địa chỉ server TingPush; chỉ cần đổi khi tự host server hoặc test với server khác.
     ///   - callConfiguration: truyền vào để bật nhận cuộc gọi (PushKit + CallKit). nil = không dùng cuộc gọi.
     ///   - isSandbox: môi trường APNs. nil = tự nhận diện từ provisioning profile (debug từ Xcode = sandbox).
     ///   - handleNotificationCenter: SDK làm delegate của UNUserNotificationCenter (hiện banner khi app đang mở,
     ///     báo sự kiện bấm thông báo). Đặt false nếu app đã có delegate riêng, khi đó tự gọi các hàm `handle…`.
     ///   - requestPermission: tự xin quyền thông báo ngay. Đặt false để tự gọi `requestPermission` lúc phù hợp.
     public func initialize(appId: String,
-                           serverURL: URL,
+                           serverURL: URL = TingPush.defaultServerURL,
                            callConfiguration: TingPushCallConfiguration? = nil,
                            isSandbox: Bool? = nil,
                            handleNotificationCenter: Bool = true,

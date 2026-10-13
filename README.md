@@ -85,7 +85,7 @@ Endpoint: `POST {server}/notifications`, header `Authorization: Key psk_…`.
 **C# (.NET)**
 
 ```csharp
-using var http = new HttpClient { BaseAddress = new Uri("https://push.example.com") };
+using var http = new HttpClient { BaseAddress = new Uri("https://tingpush.com") };
 http.DefaultRequestHeaders.Add("Authorization", "Key psk_xxx");
 var callId = Guid.NewGuid();
 var res = await http.PostAsJsonAsync("/notifications", new
@@ -101,7 +101,7 @@ var res = await http.PostAsJsonAsync("/notifications", new
 
 ```js
 const callId = crypto.randomUUID();
-await fetch('https://push.example.com/notifications', {
+await fetch('https://tingpush.com/notifications', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json', Authorization: 'Key psk_xxx' },
   body: JSON.stringify({
@@ -116,7 +116,7 @@ await fetch('https://push.example.com/notifications', {
 **PHP**
 
 ```php
-$ch = curl_init('https://push.example.com/notifications');
+$ch = curl_init('https://tingpush.com/notifications');
 curl_setopt_array($ch, [
     CURLOPT_POST => true,
     CURLOPT_RETURNTRANSFER => true,

@@ -39,7 +39,6 @@ Future<void> main() async {
 
   await TingPush.initialize(
     appId: 'APP_ID_CUA_BAN',
-    serverUrl: 'https://push.example.com',
     callStyle: const TingPushCallStyle(appName: 'MyApp', textAccept: 'Nghe', textDecline: 'Từ chối'),
     logging: true,
   );
@@ -47,6 +46,8 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 ```
+
+`serverUrl` mặc định là `https://tingpush.com`. Chỉ truyền khi tự host server TingPush hoặc test với server khác (vd server dev trong mạng LAN).
 
 `initialize` tự đăng ký handler nền (`FirebaseMessaging.onBackgroundMessage`) để đổ chuông khi app đang tắt. App đã có handler nền riêng thì truyền `handleBackgroundMessages: false` và gọi `TingPush.handleBackgroundMessage(message)` trong handler đó.
 

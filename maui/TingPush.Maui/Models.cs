@@ -71,8 +71,11 @@ public sealed class TingPushOptions
     /// <summary>App ID của dự án trên TingPush.</summary>
     public required string AppId { get; init; }
 
-    /// <summary>Địa chỉ TingPush, vd https://push.example.com</summary>
-    public required string ServerUrl { get; init; }
+    /// <summary>Địa chỉ server TingPush mặc định.</summary>
+    public const string DefaultServerUrl = "https://tingpush.com";
+
+    /// <summary>Địa chỉ server TingPush. Chỉ cần đổi khi tự host server hoặc test với server khác.</summary>
+    public string ServerUrl { get; init; } = DefaultServerUrl;
 
     /// <summary>Bật nhận cuộc gọi (iOS: PushKit + CallKit; Android: màn hình cuộc gọi).</summary>
     public bool EnableCalls { get; init; } = true;
