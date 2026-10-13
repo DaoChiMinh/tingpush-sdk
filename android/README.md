@@ -9,23 +9,25 @@ Yêu cầu: minSdk 23, compileSdk 35+, Kotlin 2.x và Firebase Cloud Messaging. 
    - Tải `google-services.json` về và đặt vào `app/`.
    - Thêm plugin `com.google.gms.google-services` vào project.
 2. Trên TingPush, upload **service account JSON** của **cùng project Firebase** đó.
-3. Copy thư mục `sdk/android/tingpush` vào project của bạn, rồi khai báo module:
+3. Thêm SDK từ [JitPack](https://jitpack.io/#DaoChiMinh/tingpush-sdk):
 
 ```kotlin
 // settings.gradle.kts
-include(":tingpush")
-// Hoặc trỏ thẳng tới thư mục SDK:
-// project(":tingpush").projectDir = file("../sdk/android/tingpush")
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
+}
 ```
 
 ```kotlin
 // app/build.gradle.kts
 dependencies {
-    implementation(project(":tingpush"))
+    implementation("com.github.DaoChiMinh:tingpush-sdk:1.0.0")
 }
 ```
-
-**AGP 9 có Kotlin tích hợp sẵn** (`android.builtInKotlin=true`). Trường hợp này, xoá dòng `id("org.jetbrains.kotlin.android")` trong `tingpush/build.gradle.kts`.
 
 SDK đã khai báo sẵn trong manifest: các quyền cần thiết, `FirebaseMessagingService` và màn hình cuộc gọi. Bạn không cần sửa `AndroidManifest.xml` của app.
 

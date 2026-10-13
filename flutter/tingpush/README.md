@@ -15,9 +15,10 @@ Yêu cầu Flutter 3.22+, iOS 15+, Android minSdk 24.
 # pubspec.yaml của app
 dependencies:
   firebase_core: ^4.0.0
-  tingpush:
-    path: ./TingPushSDK/flutter/tingpush   # hoặc git: url của repo nội bộ
+  tingpush: ^1.0.0
 ```
+
+Hoặc chạy `flutter pub add firebase_core tingpush`.
 
 Cấu hình Firebase cho app bằng [FlutterFire CLI](https://firebase.google.com/docs/flutter/setup): chạy `flutterfire configure`. Lệnh này tạo `firebase_options.dart`. Sau đó:
 

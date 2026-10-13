@@ -6,13 +6,19 @@ Yêu cầu iOS 13+ và Xcode 14+. SDK không phụ thuộc thư viện nào khá
 
 **Swift Package Manager**
 
-- Xcode → *File → Add Package Dependencies…* → *Add Local…*, rồi chọn thư mục `sdk/ios`.
-- Nếu đã đưa SDK lên repo git nội bộ thì nhập URL repo.
+Xcode → *File → Add Package Dependencies…* → nhập `https://github.com/DaoChiMinh/tingpush-sdk`, chọn *Up to Next Major Version* từ `1.0.0`.
 
-**CocoaPods**
+Trong `Package.swift` của bạn:
+
+```swift
+.package(url: "https://github.com/DaoChiMinh/tingpush-sdk", from: "1.0.0")
+// target: .product(name: "TingPush", package: "tingpush-sdk")
+```
+
+**CocoaPods** (chép thư mục `ios/` của repo này vào project):
 
 ```ruby
-pod 'TingPush', :path => '../sdk/ios'
+pod 'TingPush', :path => './TingPushSDK/ios'
 ```
 
 ## 2. Cấu hình project (Signing & Capabilities)
