@@ -1,3 +1,7 @@
+## 1.1.1
+
+- serverUrl mặc định là https://tingpush.com
+
 ## 1.1.0
 
 - serverUrl mặc định là https://tingpush.com

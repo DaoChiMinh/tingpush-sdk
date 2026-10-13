@@ -1,5 +1,5 @@
 group = "com.tingpush.flutter"
-version = "1.1.0"
+version = "1.1.1"
 
 buildscript {
     repositories {

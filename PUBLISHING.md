@@ -6,7 +6,7 @@ Thư mục `sdk/` là nội dung của repo public **https://github.com/DaoChiMi
 | SDK | Kho | Dev cài bằng |
 |---|---|---|
 | iOS | Swift Package Manager (repo GitHub + tag) | Xcode → *Add Package Dependencies…* → `https://github.com/DaoChiMinh/tingpush-sdk` |
-| Android | JitPack (build từ tag GitHub) | `implementation("com.github.DaoChiMinh:tingpush-sdk:1.1.0")` |
+| Android | JitPack (build từ tag GitHub) | `implementation("com.github.DaoChiMinh:tingpush-sdk:1.1.1")` |
 | Flutter | pub.dev | `flutter pub add tingpush` |
 | React Native | npm | `npm install @tingpush/react-native` |
 | .NET MAUI | nuget.org | `dotnet add package TingPush.Maui` |
@@ -51,7 +51,7 @@ dependencyResolutionManagement {
 
 // app/build.gradle.kts
 dependencies {
-    implementation("com.github.DaoChiMinh:tingpush-sdk:1.1.0")
+    implementation("com.github.DaoChiMinh:tingpush-sdk:1.1.1")
 }
 ```
 

@@ -25,7 +25,7 @@ dependencyResolutionManagement {
 ```kotlin
 // app/build.gradle.kts
 dependencies {
-    implementation("com.github.DaoChiMinh:tingpush-sdk:1.1.0")
+    implementation("com.github.DaoChiMinh:tingpush-sdk:1.1.1")
 }
 ```
 

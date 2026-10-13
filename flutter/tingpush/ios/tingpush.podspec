@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'tingpush'
-  s.version          = '1.1.0'
+  s.version          = '1.1.1'
   s.summary          = 'SDK Flutter cho TingPush: nhận cuộc gọi VoIP (PushKit + CallKit).'
   s.homepage         = 'https://tingpush.com'
   s.license          = { :type => 'Proprietary', :text => 'Copyright TingPush' }

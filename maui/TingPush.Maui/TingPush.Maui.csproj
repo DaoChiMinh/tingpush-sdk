@@ -10,7 +10,7 @@
     <AssemblyName>TingPush.Maui</AssemblyName>
 
     <PackageId>TingPush.Maui</PackageId>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Description>.NET MAUI SDK for TingPush push notifications and incoming calls (CallKit on iOS, full-screen call UI on Android).</Description>
     <Authors>TingPush</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
