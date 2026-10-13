@@ -1,0 +1,51 @@
+{
+  "name": "@tingpush/react-native",
+  "version": "1.0.0",
+  "description": "React Native SDK for TingPush push notifications and incoming calls (CallKit on iOS, ConnectionService on Android).",
+  "keywords": [
+    "react-native",
+    "push-notifications",
+    "notifications",
+    "callkit",
+    "voip",
+    "fcm",
+    "tingpush"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tingpush/tingpush-sdk.git",
+    "directory": "react-native/tingpush"
+  },
+  "bugs": {
+    "url": "https://github.com/tingpush/tingpush-sdk/issues"
+  },
+  "homepage": "https://github.com/tingpush/tingpush-sdk/tree/main/react-native/tingpush#readme",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "react-native": "src/index.ts",
+  "source": "src/index.ts",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@react-native-async-storage/async-storage": ">=1.19.0",
+    "@react-native-firebase/app": ">=18.0.0",
+    "@react-native-firebase/messaging": ">=18.0.0",
+    "react-native": ">=0.71.0",
+    "react-native-callkeep": ">=4.3.12",
+    "react-native-device-info": ">=10.0.0",
+    "react-native-voip-push-notification": ">=3.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
