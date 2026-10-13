@@ -16,6 +16,7 @@ ios/.swiftpm/
 # .NET MAUI
 maui/**/bin/
 maui/**/obj/
+maui/**/out/
 # Gradle ở gốc (JitPack)
 .gradle/
 build/
