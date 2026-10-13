@@ -29,18 +29,19 @@ Handler này phải đăng ký **trước** `AppRegistry`.
 
 ```js
 import { AppRegistry } from 'react-native';
-import messaging from '@react-native-firebase/messaging';
 import TingPush from '@tingpush/react-native';
 import App from './App';
 import { name as appName } from './app.json';
 
 // App ở nền hoặc đã tắt: hiện màn hình cuộc gọi đến (Android).
-messaging().setBackgroundMessageHandler(async (message) => {
-  await TingPush.handleBackgroundMessage(message);
-});
+TingPush.registerBackgroundHandler();
 
 AppRegistry.registerComponent(appName, () => App);
 ```
+
+App đã có `setBackgroundMessageHandler` riêng thì không gọi `registerBackgroundHandler()`, mà gọi `await TingPush.handleBackgroundMessage(message)` trong handler của bạn.
+
+Yêu cầu `@react-native-firebase/app` và `@react-native-firebase/messaging` bản 22 trở lên (SDK dùng API dạng hàm `getMessaging()`).
 
 ## 3. Khởi tạo trong component gốc
 

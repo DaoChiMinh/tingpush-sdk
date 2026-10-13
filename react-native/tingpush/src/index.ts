@@ -1,5 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import messaging, { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
+import {
+  getAPNSToken,
+  getInitialNotification,
+  getMessaging,
+  getToken,
+  onMessage,
+  onNotificationOpenedApp,
+  onTokenRefresh,
+  requestPermission,
+  setBackgroundMessageHandler,
+} from '@react-native-firebase/messaging';
 import { NativeModules, Platform } from 'react-native';
 import RNCallKeep from 'react-native-callkeep';
 import DeviceInfo from 'react-native-device-info';
@@ -22,6 +32,9 @@ const KEY_UNSUBSCRIBED = 'tingpush.unsubscribed';
 const KEY_OPTIONS = 'tingpush.options';
 const KEY_ACCEPTED = 'tingpush.acceptedCall';
 const DEFAULT_TIMEOUT_SECONDS = 45;
+
+/** RemoteMessage của @react-native-firebase/messaging (lấy theo hàm onMessage để khớp mọi bản v22+). */
+type RemoteMessage = Parameters<Parameters<typeof onMessage>[1]>[0];
 
 /** Địa chỉ server TingPush mặc định. */
 export const DEFAULT_SERVER_URL = 'https://tingpush.com';
@@ -201,10 +214,10 @@ async function handleCallData(data: Record<string, string> | undefined): Promise
 // ---------------- Đăng ký thiết bị ----------------
 
 async function pushToken(): Promise<string | undefined> {
-  if (Platform.OS !== 'ios') return messaging().getToken();
+  if (Platform.OS !== 'ios') return getToken(getMessaging());
   // Server gửi thẳng tới APNs nên iOS dùng APNs token (hex). Token có thể chưa sẵn sàng ngay.
   for (let i = 0; i < 10; i++) {
-    const token = await messaging().getAPNSToken();
+    const token = await getAPNSToken(getMessaging());
     if (token) return token;
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
@@ -270,7 +283,7 @@ function deviceLanguage(): string {
   return (locale ?? '').slice(0, 2);
 }
 
-function toNotification(message: FirebaseMessagingTypes.RemoteMessage): TingPushNotification {
+function toNotification(message: RemoteMessage): TingPushNotification {
   return {
     title: message.notification?.title,
     body: message.notification?.body,
@@ -299,24 +312,25 @@ export const TingPush = {
     unsubscribers.splice(0).forEach((fn) => fn());
     await setupCallKeep(opts);
 
+    const messaging = getMessaging();
     if (opts.requestPermission ?? true) {
-      await messaging().requestPermission();
+      await requestPermission(messaging);
     }
 
     unsubscribers.push(
-      messaging().onTokenRefresh(() => {
+      onTokenRefresh(messaging, () => {
         sync();
       }),
-      messaging().onMessage(async (message) => {
+      onMessage(messaging, async (message) => {
         if (await handleCallData(toStringRecord(message.data))) return;
         listeners.onNotificationReceived?.(toNotification(message));
       }),
-      messaging().onNotificationOpenedApp((message) => {
+      onNotificationOpenedApp(messaging, (message) => {
         listeners.onNotificationOpened?.(toNotification(message));
       }),
     );
 
-    const initial = await messaging().getInitialNotification();
+    const initial = await getInitialNotification(messaging);
     if (initial) listeners.onNotificationOpened?.(toNotification(initial));
 
     if (Platform.OS === 'ios') {
@@ -358,10 +372,20 @@ export const TingPush = {
   },
 
   /**
-   * Gọi trong `messaging().setBackgroundMessageHandler(...)` ở index.js (trước AppRegistry).
-   * Android: hiện màn hình cuộc gọi đến khi app ở nền/đã tắt. Trả về true nếu là push cuộc gọi.
+   * Gọi một lần trong index.js, trước AppRegistry: đăng ký handler nền của Firebase để hiện màn hình
+   * cuộc gọi đến khi app ở nền/đã tắt (Android). App có handler nền riêng thì gọi handleBackgroundMessage trong đó.
    */
-  async handleBackgroundMessage(message: FirebaseMessagingTypes.RemoteMessage): Promise<boolean> {
+  registerBackgroundHandler(): void {
+    setBackgroundMessageHandler(getMessaging(), async (message) => {
+      await TingPush.handleBackgroundMessage(message);
+    });
+  },
+
+  /**
+   * Xử lý push khi app ở nền/đã tắt (Android: hiện màn hình cuộc gọi đến). Trả về true nếu là push cuộc gọi.
+   * Chỉ cần gọi thủ công khi app có `setBackgroundMessageHandler` riêng.
+   */
+  async handleBackgroundMessage(message: RemoteMessage): Promise<boolean> {
     if (!options) {
       const saved = await AsyncStorage.getItem(KEY_OPTIONS);
       if (saved) options = JSON.parse(saved);
