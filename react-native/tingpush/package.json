@@ -1,6 +1,6 @@
 {
   "name": "@tingpush/react-native",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React Native SDK for TingPush push notifications and incoming calls (CallKit on iOS, ConnectionService on Android).",
   "keywords": [
     "react-native",

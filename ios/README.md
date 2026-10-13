@@ -11,7 +11,7 @@ Xcode → *File → Add Package Dependencies…* → nhập `https://github.com/
 Trong `Package.swift` của bạn:
 
 ```swift
-.package(url: "https://github.com/DaoChiMinh/tingpush-sdk", from: "1.0.0")
+.package(url: "https://github.com/DaoChiMinh/tingpush-sdk", from: "1.1.0")
 // target: .product(name: "TingPush", package: "tingpush-sdk")
 ```
 

@@ -15,7 +15,7 @@ Yêu cầu Flutter 3.22+, iOS 15+, Android minSdk 24.
 # pubspec.yaml của app
 dependencies:
   firebase_core: ^4.0.0
-  tingpush: ^1.0.0
+  tingpush: ^1.1.0
 ```
 
 Hoặc chạy `flutter pub add firebase_core tingpush`.

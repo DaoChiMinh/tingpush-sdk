@@ -18,7 +18,7 @@ dotnet add package TingPush.Maui
 ```xml
 <!-- MyApp.csproj -->
 <ItemGroup>
-  <PackageReference Include="TingPush.Maui" Version="1.0.0" />
+  <PackageReference Include="TingPush.Maui" Version="1.1.0" />
 </ItemGroup>
 ```
 
