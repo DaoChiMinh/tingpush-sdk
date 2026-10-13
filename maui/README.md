@@ -9,18 +9,20 @@ SDK viết hoàn toàn bằng C#:
 
 ## 1. Cài đặt
 
-Thêm project SDK vào solution, rồi tham chiếu từ app:
+Cài từ [NuGet](https://www.nuget.org/packages/TingPush.Maui):
+
+```bash
+dotnet add package TingPush.Maui
+```
 
 ```xml
 <!-- MyApp.csproj -->
 <ItemGroup>
-  <ProjectReference Include="..\sdk\maui\TingPush.Maui\TingPush.Maui.csproj" />
+  <PackageReference Include="TingPush.Maui" Version="1.0.0" />
 </ItemGroup>
 ```
 
-Hoặc đóng gói thành NuGet nội bộ bằng `dotnet pack sdk/maui/TingPush.Maui -c Release`, rồi thêm `PackageReference Include="TingPush.Maui"`.
-
-App dùng .NET 9 thì sửa `TargetFrameworks` trong `TingPush.Maui.csproj` thành `net9.0-android;net9.0-ios` và hạ phiên bản `Microsoft.Maui.Controls` cho khớp.
+Gói NuGet yêu cầu .NET 10 / MAUI 10. App dùng .NET 9 thì tham chiếu thẳng source (`ProjectReference` tới `maui/TingPush.Maui/TingPush.Maui.csproj` của repo này), sửa `TargetFrameworks` thành `net9.0-android;net9.0-ios` và hạ phiên bản `Microsoft.Maui.Controls` cho khớp.
 
 ## 2. Khởi tạo (`MauiProgram.cs`)
 
