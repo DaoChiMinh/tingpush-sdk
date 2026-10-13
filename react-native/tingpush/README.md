@@ -11,7 +11,7 @@ Yêu cầu React Native 0.71+. SDK chưa hỗ trợ Expo Go; với Expo cần d�
 ## 1. Cài đặt
 
 ```bash
-npm install ../sdk/react-native/tingpush \
+npm install @tingpush/react-native \
   @react-native-firebase/app @react-native-firebase/messaging \
   react-native-callkeep react-native-voip-push-notification \
   @react-native-async-storage/async-storage react-native-device-info
