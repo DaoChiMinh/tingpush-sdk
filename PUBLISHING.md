@@ -1,12 +1,12 @@
 # Phát hành SDK
 
-Thư mục `sdk/` là nội dung của repo public **https://github.com/tingpush/tingpush-sdk** (giấy phép MIT).
-Đổi tên repo thì tìm-thay `tingpush/tingpush-sdk` trong `sdk/` (Package.swift, pubspec.yaml, package.json, TingPush.Maui.csproj, README).
+Thư mục `sdk/` là nội dung của repo public **https://github.com/DaoChiMinh/tingpush-sdk** (giấy phép MIT).
+Đổi repo thì tìm-thay `DaoChiMinh/tingpush-sdk` trong `sdk/` (Package.swift, pubspec.yaml, package.json, TingPush.Maui.csproj, README).
 
 | SDK | Kho | Dev cài bằng |
 |---|---|---|
-| iOS | Swift Package Manager (repo GitHub + tag) | Xcode → *Add Package Dependencies…* → `https://github.com/tingpush/tingpush-sdk` |
-| Android | JitPack (build từ tag GitHub) | `implementation("com.github.tingpush.tingpush-sdk:tingpush:1.0.0")` |
+| iOS | Swift Package Manager (repo GitHub + tag) | Xcode → *Add Package Dependencies…* → `https://github.com/DaoChiMinh/tingpush-sdk` |
+| Android | JitPack (build từ tag GitHub) | `implementation("com.github.DaoChiMinh.tingpush-sdk:tingpush:1.0.0")` |
 | Flutter | pub.dev | `flutter pub add tingpush` |
 | React Native | npm | `npm install @tingpush/react-native` |
 | .NET MAUI | nuget.org | `dotnet add package TingPush.Maui` |
@@ -17,9 +17,9 @@ Chạy ở gốc repo nội bộ (lần sau chạy lại y hệt, git chỉ thê
 
 ```bash
 git subtree split --prefix=sdk -b sdk-public
-git push https://github.com/tingpush/tingpush-sdk.git sdk-public:main
+git push https://github.com/DaoChiMinh/tingpush-sdk.git sdk-public:main
 git tag 1.0.0 sdk-public
-git push https://github.com/tingpush/tingpush-sdk.git 1.0.0
+git push https://github.com/DaoChiMinh/tingpush-sdk.git 1.0.0
 ```
 
 Tag dạng `1.0.0` (không có chữ `v`) — SPM và JitPack đọc phiên bản từ tag này.
@@ -28,11 +28,11 @@ Tag dạng `1.0.0` (không có chữ `v`) — SPM và JitPack đọc phiên bả
 
 Không cần upload: có tag là dev thêm được package bằng URL repo. `Package.swift` ở gốc repo trỏ tới `ios/Sources/TingPush`.
 
-CocoaPods: trunk chuyển chỉ-đọc từ 12/2026 nên không đẩy lên trunk. `ios/TingPush.podspec` vẫn dùng được theo kiểu `pod 'TingPush', :git => 'https://github.com/tingpush/tingpush-sdk.git', :tag => '1.0.0'` nếu sửa `s.source` và đường dẫn `source_files` cho khớp gốc repo.
+CocoaPods: trunk chuyển chỉ-đọc từ 12/2026 nên không đẩy lên trunk. `ios/TingPush.podspec` vẫn dùng được theo kiểu `pod 'TingPush', :git => 'https://github.com/DaoChiMinh/tingpush-sdk.git', :tag => '1.0.0'` nếu sửa `s.source` và đường dẫn `source_files` cho khớp gốc repo.
 
 ## 2. Android (JitPack)
 
-1. Vào https://jitpack.io, nhập `tingpush/tingpush-sdk`, bấm **Get it** ở tag `1.0.0` để JitPack build (theo `jitpack.yml`: `./gradlew :tingpush:publishToMavenLocal`).
+1. Vào https://jitpack.io, nhập `DaoChiMinh/tingpush-sdk`, bấm **Get it** ở tag `1.0.0` để JitPack build (theo `jitpack.yml`: `./gradlew :tingpush:publishToMavenLocal`).
 2. Dev khai báo:
 
 ```kotlin
@@ -47,7 +47,7 @@ dependencyResolutionManagement {
 
 // app/build.gradle.kts
 dependencies {
-    implementation("com.github.tingpush.tingpush-sdk:tingpush:1.0.0")
+    implementation("com.github.DaoChiMinh.tingpush-sdk:tingpush:1.0.0")
 }
 ```
 

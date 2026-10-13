@@ -14,13 +14,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tingpush/tingpush-sdk.git",
+    "url": "git+https://github.com/DaoChiMinh/tingpush-sdk.git",
     "directory": "react-native/tingpush"
   },
   "bugs": {
-    "url": "https://github.com/tingpush/tingpush-sdk/issues"
+    "url": "https://github.com/DaoChiMinh/tingpush-sdk/issues"
   },
-  "homepage": "https://github.com/tingpush/tingpush-sdk/tree/main/react-native/tingpush#readme",
+  "homepage": "https://github.com/DaoChiMinh/tingpush-sdk/tree/main/react-native/tingpush#readme",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "react-native": "src/index.ts",

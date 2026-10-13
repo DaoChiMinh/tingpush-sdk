@@ -1,6 +1,6 @@
 // swift-tools-version:5.7
 // Package.swift ở gốc repo để cài iOS SDK qua Swift Package Manager bằng URL repo:
-// Xcode → File → Add Package Dependencies… → https://github.com/tingpush/tingpush-sdk
+// Xcode → File → Add Package Dependencies… → https://github.com/DaoChiMinh/tingpush-sdk
 import PackageDescription
 
 let package = Package(

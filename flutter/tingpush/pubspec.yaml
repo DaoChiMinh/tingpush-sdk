@@ -1,8 +1,8 @@
 name: tingpush
 description: Flutter SDK for TingPush push notifications and incoming calls (CallKit on iOS, full-screen call UI on Android).
 version: 1.0.0
-repository: https://github.com/tingpush/tingpush-sdk/tree/main/flutter/tingpush
-issue_tracker: https://github.com/tingpush/tingpush-sdk/issues
+repository: https://github.com/DaoChiMinh/tingpush-sdk/tree/main/flutter/tingpush
+issue_tracker: https://github.com/DaoChiMinh/tingpush-sdk/issues
 topics:
   - push-notifications
   - notifications
