@@ -11,18 +11,22 @@ Thư mục `sdk/` là nội dung của repo public **https://github.com/DaoChiMi
 | React Native | npm | `npm install @tingpush/react-native` |
 | .NET MAUI | nuget.org | `dotnet add package TingPush.Maui` |
 
-## 0. Đẩy `sdk/` lên repo public và gắn tag
+## 0. Phát hành tự động
 
-Chạy ở gốc repo nội bộ (lần sau chạy lại y hệt, git chỉ thêm commit mới):
+Repo này là submodule `sdk/` của repo server TingPush. Ở đó, script `tools/release-sdk.ps1` làm hết các bước dưới đây
+(tăng version, commit, tag, push, phát hành lên pub.dev / npm / nuget.org, chờ JitPack):
 
 ```bash
-git subtree split --prefix=sdk -b sdk-public
-git push https://github.com/DaoChiMinh/tingpush-sdk.git sdk-public:main
-git tag 1.0.0 sdk-public
-git push https://github.com/DaoChiMinh/tingpush-sdk.git 1.0.0
+powershell -ExecutionPolicy Bypass -File .\tools\release-sdk.ps1 -Version 1.0.1 -Notes "Sửa lỗi ..." -DryRun
+powershell -ExecutionPolicy Bypass -File .\tools\release-sdk.ps1 -Version 1.0.1 -Notes "Sửa lỗi ..."
 ```
 
-Tag dạng `1.0.0` (không có chữ `v`) — SPM và JitPack đọc phiên bản từ tag này.
+Làm tay thì gắn tag dạng `1.0.0` (không có chữ `v`) rồi push tag — SPM và JitPack đọc phiên bản từ tag này:
+
+```bash
+git tag 1.0.1
+git push origin main 1.0.1
+```
 
 ## 1. iOS (SPM)
 
